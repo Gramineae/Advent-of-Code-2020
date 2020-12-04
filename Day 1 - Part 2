@@ -1,0 +1,17 @@
+with open('day1.txt', encoding='utf-8') as fhand:
+    numbers = [int(n) for n in fhand]
+
+adjusted_numbers = numbers[:]
+flag = False
+
+for n in numbers:
+    remainder = 2020 - n
+    adjusted_numbers.remove(n)
+    for num in adjusted_numbers:
+        if (remainder - num) in adjusted_numbers:
+            print(n, num, remainder-num)
+            flag = True
+            break
+    if flag: break
+
+print(n * num * (remainder-num))
