@@ -1,0 +1,17 @@
+fhand = open('day3.txt')
+
+terrain = []
+for line in fhand:
+    line = (line.rstrip()) * 32
+    terrain.append(line)
+
+fhand.close()
+
+route = {}
+index = 0
+for row in terrain:
+    mark = row[index]
+    route[mark] = route.get(mark, 0) + 1
+    index += 3
+
+print(route)
