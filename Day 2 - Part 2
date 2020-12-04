@@ -1,0 +1,23 @@
+import re
+
+with open('day2.txt', encoding='utf-8') as fhand:
+    lists = []
+    for line in fhand:
+        line = line.rstrip()
+        alist = re.split(r'\W+', line)
+        lists.append(alist)
+
+total = 0
+for info in lists:
+    index1 = int(info[0]) - 1
+    index2 = int(info[1]) - 1
+    char = info[2]
+    password = info[3]
+    pos1 = password[index1]
+    pos2 = password[index2]
+    if pos1 == char and pos2 != char:
+        total += 1
+    elif pos1 != char and pos2 == char:
+        total += 1
+
+print(total)
