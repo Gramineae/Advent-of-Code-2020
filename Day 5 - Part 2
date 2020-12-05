@@ -22,8 +22,7 @@ def determine_column(lr_code):
             l_end = (l_end+r_end)//2 + 1
     if l_end == r_end:      
         return l_end
-    
-    
+   
 seat_ids = []
 for boarding_pass in boarding_passes:
     boarding_pass = boarding_pass.rstrip()
