@@ -1,0 +1,12 @@
+fhand = open('day6.txt')
+text = fhand.read()
+groups = text.rstrip().split('\n\n')
+sum = 0
+
+for group in groups:
+    group_answer = group.replace('\n', '')
+    distinct_answer = set(group_answer)
+    count = len(distinct_answer)
+    sum += count
+
+print(sum)
