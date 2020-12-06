@@ -1,0 +1,15 @@
+fhand = open('day6.txt')
+text = fhand.read()
+groups = text.rstrip().split('\n\n')
+sum = 0
+
+for group in groups:
+    group_answers = group.split()
+    intersection = {chr(i) for i in range(97,123)}
+    for answer in group_answers:
+        intersection = set(answer) & intersection
+    count = len(intersection)
+    sum += count
+
+print(sum)
+    
