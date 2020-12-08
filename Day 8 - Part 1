@@ -1,0 +1,19 @@
+fhand = open('day8.txt')
+instructions = [instruction.split() for instruction in fhand]
+
+executed_indices = []
+i = 0
+accumulator = 0
+while True:
+    executed_indices.append(i)
+    if instructions[i][0] == 'acc':
+        accumulator += int(instructions[i][1])
+        i += 1
+    elif instructions[i][0] == 'nop':
+        i += 1
+    elif instructions[i][0] == 'jmp':
+        i += int(instructions[i][1])
+    if i in executed_indices:
+        break
+
+print(accumulator)
