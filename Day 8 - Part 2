@@ -1,0 +1,65 @@
+import copy
+
+def check_termination(n, commands):
+    first_time_indices = []
+    flag = False
+    while n < len(commands):
+        first_time_indices.append(n)
+        if (commands[n][0] == 'acc') or (commands[n][0] =='nop'):
+            n += 1
+        elif commands[n][0] == 'jmp':
+            n += int(commands[n][1])
+        if n in first_time_indices:
+            break
+        elif n == len(commands):
+            flag = True
+            break
+    return flag
+
+def count_accumulator_value(commands):
+    n = 0
+    acc = 0
+    while n < len(commands):
+        if commands[n][0] == 'acc':
+            acc += int(commands[n][1])
+            n += 1
+        elif commands[n][0] == 'nop':
+            n += 1
+        elif commands[n][0] == 'jmp':
+            n += int(commands[n][1])
+    return acc
+
+fhand = open('day8.txt')
+instructions = [instruction.split() for instruction in fhand]
+
+executed_indices = []
+i = 0
+accumulator = 0
+while i < len(instructions):
+    executed_indices.append(i)
+    if instructions[i][0] == 'acc':
+        accumulator += int(instructions[i][1])
+        i += 1
+    elif instructions[i][0] == 'nop':
+        i += 1
+    elif instructions[i][0] == 'jmp':
+        i += int(instructions[i][1])
+    if i in executed_indices:
+        break
+
+
+for i in executed_indices:
+    # create a completely duplicated nested list
+    modified_instructions = copy.deepcopy(instructions) 
+    if modified_instructions[i][0] == 'nop':
+        modified_instructions[i][0] = 'jmp'
+        if check_termination(i, modified_instructions):
+            accumulator = count_accumulator_value(modified_instructions)
+            break
+    elif modified_instructions[i][0] == 'jmp':
+        modified_instructions[i][0] = 'nop'
+        if check_termination(i, modified_instructions):
+            accumulator = count_accumulator_value(modified_instructions)
+            break
+
+print(accumulator)
