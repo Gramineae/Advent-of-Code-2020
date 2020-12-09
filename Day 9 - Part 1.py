@@ -18,4 +18,3 @@ for i,number in enumerate(XMAS):
         break
 
 print(number)
-        
