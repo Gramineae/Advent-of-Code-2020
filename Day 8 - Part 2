@@ -51,12 +51,12 @@ while i < len(instructions):
 for i in executed_indices:
     # create a completely duplicated nested list
     modified_instructions = copy.deepcopy(instructions) 
-    if modified_instructions[i][0] == 'nop':
+    if instructions[i][0] == 'nop':
         modified_instructions[i][0] = 'jmp'
         if check_termination(i, modified_instructions):
             accumulator = count_accumulator_value(modified_instructions)
             break
-    elif modified_instructions[i][0] == 'jmp':
+    elif instructions[i][0] == 'jmp':
         modified_instructions[i][0] = 'nop'
         if check_termination(i, modified_instructions):
             accumulator = count_accumulator_value(modified_instructions)
