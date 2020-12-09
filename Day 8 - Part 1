@@ -4,7 +4,7 @@ instructions = [instruction.split() for instruction in fhand]
 executed_indices = []
 i = 0
 accumulator = 0
-while True:
+while i < len(instructions):
     executed_indices.append(i)
     if instructions[i][0] == 'acc':
         accumulator += int(instructions[i][1])
