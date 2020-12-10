@@ -18,6 +18,4 @@ for i in range(0, len(adapters)):
     elif diff == 3:
         three_jolt_count += 1
 
-print(one_jolt_count * three_jolt_count)
-        
-    
+print(one_jolt_count * three_jolt_count)    
